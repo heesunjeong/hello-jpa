@@ -18,7 +18,7 @@ public class Main {
         try {
             tx.begin();
 
-            Member member = new Member(1L, "정조이", 0, MemberType.ADMIN);
+            Member member = new Member("정조이", 0, MemberType.ADMIN);
 
             em.persist(member);
             tx.commit();

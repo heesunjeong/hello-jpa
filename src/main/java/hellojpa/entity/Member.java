@@ -6,10 +6,10 @@ import java.util.Date;
 
 @Entity
 public class Member {
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "user_name")
+    @Column(name = "userName", length = 20)
     private String name;
 
     private int age;
@@ -21,6 +21,12 @@ public class Member {
     private Date createdAt;
 
     public Member() {
+    }
+
+    public Member(String name, int age, MemberType memberType) {
+        this.name = name;
+        this.age = age;
+        this.memberType = memberType;
     }
 
     public Member(Long id, String name, int age, MemberType memberType) {
