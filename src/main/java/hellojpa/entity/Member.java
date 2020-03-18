@@ -17,7 +17,11 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberType memberType;
 
-    private Long teamId;
+    /*private Long teamId;*/
+
+    @ManyToOne
+    @JoinColumn(name = "teamId")
+    private Team team;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
@@ -29,16 +33,16 @@ public class Member {
         this(null, name, age, memberType, null);
     }
 
-    public Member(String name, Long teamId) {
-        this(null, name, 0, MemberType.USER, teamId);
+    public Member(String name, Team team) {
+        this(null, name, 0, MemberType.USER, team);
     }
 
-    public Member(Long id, String name, int age, MemberType memberType, Long teamId) {
+    public Member(Long id, String name, int age, MemberType memberType, Team team) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.memberType = memberType;
-        this.teamId = teamId;
+        this.team = team;
     }
 
     public Long getId() {
@@ -57,8 +61,8 @@ public class Member {
         return memberType;
     }
 
-    public Long getTeamId() {
-        return teamId;
+    public Team getTeam() {
+        return team;
     }
 
     public Date getCreatedAt() {

@@ -21,14 +21,17 @@ public class Main {
             Team team = new Team("조이팀");
             em.persist(team);
 
-            Member member = new Member("정조이", team.getId());
+            Member member = new Member("정조이", team);
             em.persist(member);
 
             ///////
 
+            em.flush();
+            em.clear();
+
             Member savedMember = em.find(Member.class, member.getId());
-            // 연관관계 없음
-            Team savedTeam = em.find(Team.class, member.getTeamId());
+            // 참조를 사용해서 연관관계 조회
+            Team savedTeam = savedMember.getTeam();
 
             tx.commit();
         } catch (Exception e) {
