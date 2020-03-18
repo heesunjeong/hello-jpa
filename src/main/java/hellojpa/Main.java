@@ -33,6 +33,11 @@ public class Main {
             // 참조를 사용해서 연관관계 조회
             Team savedTeam = savedMember.getTeam();
 
+            savedTeam.getMembers().size(); // 역방향 조회
+            for(Member member1: savedTeam.getMembers()) {
+                System.out.println("member = " + member1.toString());
+            }
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

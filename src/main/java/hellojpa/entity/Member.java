@@ -68,4 +68,16 @@ public class Member {
     public Date getCreatedAt() {
         return createdAt;
     }
+
+    @Override
+    public String  toString() {
+        return "Member{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", memberType=" + memberType +
+                ", team=" + team +
+                ", createdAt=" + createdAt +
+                '}';
+    }
 }
