@@ -14,13 +14,20 @@ public class Main {
 
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
-        tx.begin();
 
-        Member member = new Member(1L, "정조이", 0, MemberType.ADMIN);
+        try {
+            tx.begin();
 
-        em.persist(member);
-        tx.commit();
-        em.close();
+            Member member = new Member(1L, "정조이", 0, MemberType.ADMIN);
+
+            em.persist(member);
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+        } finally {
+            em.close();
+        }
+
         emf.close();
     }
 }
