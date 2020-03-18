@@ -1,6 +1,7 @@
 package hellojpa;
 
 import hellojpa.entity.Member;
+import hellojpa.entity.MemberType;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,7 +16,7 @@ public class Main {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
-        Member member = new Member(1L, "정조이");
+        Member member = new Member(1L, "정조이", 0, MemberType.ADMIN);
 
         em.persist(member);
         tx.commit();
