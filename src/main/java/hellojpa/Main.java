@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -37,6 +38,15 @@ public class Main {
             for(Member member1: savedTeam.getMembers()) {
                 System.out.println("member = " + member1.toString());
             }
+
+            String jpql = "select m from Member m where m.name like '%조이%'";
+            String jpqlFetchJoin = "select m from Member m join fetch m.team where m.name like '%조이%'";
+            List<Member> members = em.createQuery(jpql, Member.class)
+                    .setFirstResult(10)
+                    .setMaxResults(10)
+                    .getResultList();
+            List<Member> members2 = em.createQuery(jpqlFetchJoin, Member.class).getResultList();
+
 
             tx.commit();
         } catch (Exception e) {
